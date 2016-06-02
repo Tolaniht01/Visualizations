@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>SVD</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage plugin by Alvaro Trigo. Pure javascript version of full screen slider." />
+	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple,pure,javascript,slider,hijacking" />
+	<meta name="Resource-type" content="Document" />
+	<script src="js/numeric-1.2.6.js"></script>
+    <script src="js/numeric-1.2.6.min.js"></script>
+    <script src="js/Chart.js"></script>
+    <script src="js/svd.js"></script>
+    <script src="js/eigen.js"></script>
+	<link rel="stylesheet" type="text/css" href="javascript.fullPage.css" />
+
+	<style>
+		/* Reset CSS
+		 * --------------------------------------- */
+		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+		form,fieldset,input,textarea,p,blockquote,th,td {
+		    padding: 0;
+		    margin: 0;
+		}
+		a{
+			text-decoration:none;
+		}
+		table {
+		    border-spacing: 0;
+		}
+		fieldset,img {
+		    border: 0;
+		}
+		address,caption,cite,code,dfn,em,strong,th,var {
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		strong{
+			font-weight: bold;
+		}
+		ol,ul {
+		    list-style: none;
+		    margin:0;
+		    padding:0;
+		}
+		caption,th {
+		    text-align: left;
+
+		}
+		h1,h2,h3,h4,h5,h6 {
+		    font-weight: normal;
+		    font-size: 100%;
+		    margin:0;
+		    padding:0;
+		    color:#444;
+		}
+		q:before,q:after {
+		    content:'';
+		}
+		abbr,acronym { border: 0;
+		}
+
+
+		/* Custom CSS
+		 * --------------------------------------- */
+		body{
+			font-family: arial,helvetica;
+			color: #F2F2F2;
+		}
+		h1{
+			font-size: 6em;
+		}
+		h2{
+			font-size:4em;
+		}
+		p{
+			font-size: 2em;
+		}
+		.content{
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			text-align: center;
+		}
+
+		/* Section 1
+		 * --------------------------------------- */
+		#section0{
+			background-color: #BFDA00;
+		}
+		#section0 h2{
+			color: #444;
+			
+		}
+		#section0 p{
+			color: #333;
+			opacity: 0.4;
+		}
+
+
+		/* Section 1
+		 * --------------------------------------- */
+		#section1{
+			background-color: #2EBE21;
+		}
+		#section1 h2{
+			color: #fff;
+		}
+		#section1 p{
+			opacity: 0.8;
+		}
+
+
+		/* Section 2
+		 * --------------------------------------- */
+		#section2{
+			background-color: #99ccff;
+		}
+		#section2 h2{
+			color: #fff;
+		}
+		#section2 p{
+			
+			opacity: 0.6;
+		}
+	/* Section 3
+		 * --------------------------------------- */
+		#section3{
+			background-color: #ff6666;
+		}
+		#section3 h2{
+			color: #fff;
+		}
+		#section3 p{
+			opacity: 0.6;
+		}
+	</style>
+
+	<!-- --------------------------------Sript starts here ------------------------------------------- -->
+	<script type="text/javascript">
+    var lolz;
+    function onload() { 
+        a1 = document.getElementById('a1');
+        a2 = document.getElementById('a2');
+        b1 = document.getElementById('b1');
+        b2 = document.getElementById('b2');
+    }
+    function kk(){
+        //document.write(lolz.value)
+        a11= parseInt(a1.value, 10);
+        a12= parseInt(a2.value, 10);
+        b11 = parseInt(b1.value, 10);
+        b12 = parseInt(b2.value, 10);
+       // document.getElementById("para").innerHTML = a +b+c+d;
+        
+/* ----------------------- SVD Spherical--------------------------*/
+
+        var arr = [];
+	for (var i=0, t=100; i<t; i++) {
+    arr.push(Math.round(Math.random() * t)+100)
+	}
+	//document.write(arr);
+    
+    x = numeric.sin(arr);       // sin values
+    y = numeric.cos(arr)    // corresponding cos values
+    test("myChart1",x,y,a11,a12,b11,b12);
+    
+
+
+/* ----------------------- END--------------------------*/
+
+
+/* ----------------------- SVD Normal Distribution--------------------------*/
+	x = [-0.46451278, -0.25046501, -0.51806833 , 0.99894498,  0.73771435 , 0.73099705,
+  0.09312375,  0.0632059,  -1.70159466, -1.24575886,  0.01076841, -1.41489839,
+ -1.06089061, -1.17768482 , 1.32294074,  0.48184197, -1.09207554,  1.28676039,
+ -0.62833635,  1.15297009, -0.73849013,  0.14887586, -0.00502372,  0.92186764,
+ -0.18798167, -1.36313759,  0.41047916,  0.16664193,  0.67311235, -0.38333168,
+ -2.25291738,  0.1430112,   0.17146572,  0.32349661, -0.19105782,  1.12148534,
+  0.29017927,  0.07871344,  0.78093253,  0.38855509, -0.49198588, -0.36156125,
+  0.53079948, -0.1395298,   0.44595019, -1.03865962, -0.30844344,  0.0283737,
+ -1.96009623,  0.73699817,  0.49701227 , 0.71600812, -0.00434543, -0.1585489,
+  0.89149159, -0.60997769, -2.02301457 , 0.28367774, -0.7862965 ,  1.27749461,
+ -0.73828382, -0.22775878, -0.11962854,  0.84902884 ,-0.59548639, -0.23509587,
+ -0.77470115,  1.89765104 , 0.4843028 ,  1.03036639 , 1.34952532 , 2.27973736,
+ -1.1295057,  -0.67376216, -0.41321023 , 0.8441677 ,  2.21130172, -0.19273507,
+  1.62930181, -0.69625182 ,-0.39406484 , 0.19161894, -0.00651644 , 0.0250081,
+ -0.43334037 , 1.04647376, -0.60894646, -0.08299575,  0.07357034, -0.61485319,
+  0.45730375,  0.72101381, -1.33084269, -1.33580141,  0.23424626 , 1.88964003,
+  1.06242757,  1.4371286,  -0.45041773, -1.63202829]; 
+
+  y = [ 0.37740005,  0.92899475, -0.10084313, -0.21743969 , 1.58688803 , 0.50114471,
+ -1.7435476,   1.4232702 , -1.3067183 ,  0.09576455 , 0.56985116 , 0.16367249,
+ -1.74555918 ,-0.93211707 , 0.27586248 , 1.20443691, -0.21652742 , 0.52400757,
+  1.78360078, -0.23155539, -1.74151965, -0.00489169, -0.03998455,  0.82990602,
+ -0.51121972, -1.17501371 ,-0.65772076,  0.854292  , -2.34445344, -0.07385904,
+ -1.82904508,  1.08445051, -2.54131129, -0.3191781 ,  0.36532003 , 1.134781,
+ -2.21224824, -0.61539941 , 1.37155311 , 0.74648628, -0.17149801, -0.83560127,
+  0.50485351, -1.82903826 , 0.3737704 ,  0.1743545,  -0.62152738 , 0.40097886,
+  0.85616968 , 1.76785697 ,-0.38389765,  1.10067283,  0.99308216 ,-0.68012738,
+ -0.72841539 , 1.97116526,  1.63249056, -2.28088668, -1.04031674 ,-0.87615306,
+ -0.21690281, -0.47855623, -1.58321227 ,-0.16995373 ,-0.06060492 , 0.38217233,
+  0.15122451, -0.78806209 , 0.21656458 , 0.46268099 , 0.9501108 , -0.41202521,
+ -0.12908068,  1.12392241,  1.19911314,  1.47574796 , 1.58216604,-1.51087478,
+  0.94964669, -0.39860465 , 0.03677222, -0.65036716 , 0.42641722 , 0.21811883,
+ -0.31287446 ,-0.80121004,  1.153026  ,  1.29010087,  1.18175946, -0.91379828,
+  0.5793928 , -0.56344789, -0.54860289 , 0.20759468 ,-1.18822006 ,-1.44778305,
+ -1.7347841  , 0.0402381  , 0.54378189, -1.82115282];
+ test("myChart2",x,y,a11,a12,b11,b12);
+ /*----------------------------END-----------------------------------*/
+
+ /*------------------------_Eigen Values-----------------------------*/
+ plotVector("myChart3",a11,a12,b11,b12);
+    }
+
+    
+</script>
+</head>
+<body>
+
+
+<div id="fullpage">
+	<div class="section " id="section0">
+		<div class="content">
+			<h1> SVD </h1>
+
+			<input type="text" name="enter" class="enter" value="" id="a1"/>
+    		<input type="text" name="enter" class="enter" value="" id="a2"/>
+    		<br>
+    		<input type="text" name="enter" class="enter" value="" id="b1"/>
+    		<input type="text" name="enter" class="enter" value="" id="b2"/>
+    		<input type="button" value="click" onclick="kk();"/>
+    		<br>
+    		
+			
+    
+    
+		</div>
+	</div>
+	
+	<div class="section" id="section1">
+			<h2>Ellipse</h2>
+		<div class="content">
+
+
+			<canvas id="myChart1" width="100%" height="40%"></canvas>
+		</div>
+	</div>
+
+	<div class="section" id="section2">
+			<h2>Normal Distribution</h2>
+		<div class="content">
+
+
+			<canvas id="myChart2" width="100%" height="40%"></canvas>
+		</div>
+	</div>
+
+	<div class="section" id="section3">
+			<h2>Eigen Values</h2>
+		<div class="content">
+
+
+			<canvas id="myChart3" width="100%" height="40%"></canvas>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="javascript.fullPage.js"></script>
+<script type="text/javascript">
+	fullpage.initialize('#fullpage', {
+		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+		menu: '#menu',
+		css3:true
+	});
+
+</script>
+
+</body>
+</html>
