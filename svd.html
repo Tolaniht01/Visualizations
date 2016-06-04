@@ -14,6 +14,10 @@
     <script src="js/svd.js"></script>
     <script src="js/eigen.js"></script>
 	<link rel="stylesheet" type="text/css" href="javascript.fullPage.css" />
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+	<script type="text/javascript">
+	LatexIT.add('p',true);
+	</script>
 
 	<style>
 		/* Reset CSS
@@ -132,8 +136,10 @@
 		#section3 h2{
 			color: #fff;
 		}
-		#section3 p{
-			opacity: 0.6;
+		#section3 p
+		{
+			font-size: medium;
+			justify-content:all;
 		}
 		#heading{
 			position: relative;
@@ -266,6 +272,41 @@
 
 	<div class="section" id="section3">
 			<h2>Eigen Values</h2>
+
+			<p>
+				
+				{ Given a Matrice A with eigen vectors v1,v2 corresponding to eigen values $\lambda1$ and $\lambda 2$ repectively.Then we know that}
+\[Av = \lambda v \]    
+
+where $v$ $\epsilon$ $\{ v1, v2\}$ using the above result we can conclude that
+   \[A^2v \ = \lambda^2v \]
+ \[AAv = A\lambda v\]
+ \[AAv = \lambda A v\]
+
+ \[A^2v = \lambda \lambda v\]
+
+\[A^2v \ = \lambda^2v \]
+From the above we get 
+
+\[A^nv \ = \lambda^nv \]
+where $n$ $\epsilon$  $\{ 1, 2 ,3 ,4, 5,.....\}$
+
+
+The graph plotted represents the various vectors obtained on multiplying the eigen vectors of matrice A with the powers of A. We observe the following cases :
+<br>
+1) if $|\lambda| <1 $ and $\lambda >0 $
+   The eigen vector of the matrice A keeps on shrinking as the value of n increases.
+<br>
+2) if $|\lambda| <1 $ and $\lambda <0 $
+   The eigen vector of the matrice A keeps on shrinking as the value of n increases and also for even value of n it keeps flipping its direction by $180^{\circ}$.
+<br>
+3) if $|\lambda| >1 $ and $\lambda <0 $
+   The eigen vector of the matrice A keeps on elongating as the value of n increases and also for even value of n it keeps flipping its direction by $180^{\circ}$.
+ <br>  
+4) if $|\lambda| >1 $ and $\lambda >0 $
+   The eigen vector of the matrice A keeps on elongating as the value of n increases .
+	<br>
+			</p>
 		<div class="content">
 
 
