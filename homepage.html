@@ -3,134 +3,21 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>SVD</title>
-	<meta name="author" content="Alvaro Trigo Lopez" />
-	<meta name="description" content="fullPage plugin by Alvaro Trigo. Pure javascript version of full screen slider." />
-	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple,pure,javascript,slider,hijacking" />
-	<meta name="Resource-type" content="Document" />
+	<title>Horizontal navigation dots - fullPage.js</title>
 	
-	<link rel="stylesheet" type="text/css" href="javascript.fullPage.css" />
 
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="css/examples.css" />
 	<style>
-		/* Reset CSS
-		 * --------------------------------------- */
-		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
-		form,fieldset,input,textarea,p,blockquote,th,td {
-		    padding: 0;
-		    margin: 0;
-		}
-		a{
-			text-decoration:none;
-		}
-		table {
-		    border-spacing: 0;
-		}
-		fieldset,img {
-		    border: 0;
-		}
-		address,caption,cite,code,dfn,em,strong,th,var {
-		    font-weight: normal;
-		    font-style: normal;
-		}
-		strong{
-			font-weight: bold;
-		}
-		ol,ul {
-		    list-style: none;
-		    margin:0;
-		    padding:0;
-		}
-		caption,th {
-		    text-align: left;
-
-		}
-		h1,h2,h3,h4,h5,h6 {
-		    font-weight: normal;
-		    font-size: 100%;
-		    margin:0;
-		    padding:0;
-		    color:#444;
-		}
-		q:before,q:after {
-		    content:'';
-		}
-		abbr,acronym { border: 0;
-		}
-
-
-		/* Custom CSS
-		 * --------------------------------------- */
-		body{
-			font-family: arial,helvetica;
-			color: #F2F2F2;
-		}
-		h1{
-			font-size: 5em;
-		}
-		h2{
-			font-size:4em;
-		}
-		p{
-			font-size: 2em;
-		}
-		.content{
-			position: relative;
-			top: 50%;
-			transform: translateY(-50%);
-			text-align: center;
-		}
-
-		/* Section 1
-		 * --------------------------------------- */
-		#section0{
-			background-color: #1976D2;
-		}
-		#section0 h1{
-			color: #444;
-			
-		}
-		#section0 p{
-			color: #333;
-			opacity: 0.4;
-		}
-
-
-		/* Section 1
-		 * --------------------------------------- */
-		#section1{
-			background-color: #2196F3;
-		}
-		#section1 h1{
-			color: #333;
-		}
-		#section1 p{
-			opacity: 0.4;
-		}
-
-
-		/* Section 2
-		 * --------------------------------------- */
-		#section2{
-			background-color: #00BCD4;
-		}
-		#section2 h1{
-			color: #333;
-
-		}
-		#section2 p{
-			
-			opacity: 0.4;
-		}
+h1{
+	font-size: 4em;
 	
-		
-	</style>
-
-	<!-- ---------- Button CSS ------- -->
-	<style>
-	.button {
+}
+	#svdb {
   display: inline-block;
   border-radius: 4px;
-  background-color: #E91E63;
+  background-color: #FF9800;
   border: none;
   border-radius: 10px;
   color: #FFFFFF;
@@ -142,7 +29,36 @@
   cursor: pointer;
   margin: 5px;
 }
-
+	#gradb {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #FF9800;
+  border: none;
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 300px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+	#lagb {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #FF9800;
+  border: none;
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 310px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
 .button span {
   cursor: pointer;
   display: inline-block;
@@ -172,51 +88,112 @@ a:visited {
 }
 
 
-	</style>>
+#header{
+		position:fixed;
+		height: 50px;
+		display:block;
+		width: 100%;
+		background: #333;
+		z-index:9;
+		text-align:center;
+		color: #f2f2f2;
+		padding: 20px 0 0 0;
+		opacity: 0.7;
+	}	
+
+	#header{
+		top:0px;
+	}
+ #section0{
+ 	background-color: #1A237E;
+ }
+ .button {
+ 	position: relative;
+    top: 7em;
+ }
+#header ul  li {
+    float: left;
+}
+#header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+}
+#header li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+</style>
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
 	
+
+	<script type="text/javascript" src="otherjs/jquery.fullPage.js"></script>
+	<script type="text/javascript" src="otherjs/examples.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				
+				sectionsColor: ['#536DFE', '#1976D2', '#2196F3'],
+				navigation: true,
+				navigationPosition: 'right',
+				navigationTooltips: ['SVD', 'Gradient Descent', 'Lagrange Multipliers']
+			});
+		});
+	</script>
+
 </head>
 <body>
 
 
-<div id="fullpage">
-	<div class="section " id="section0">
-	<h1 id> <center>Singular Value Decomposition - SVD</center></h1>
-		<div class="content">
-			<button class="button" style="vertical-align:middle"><a href="svd.html"><span>SVD</span></a></button>
-    	
-		</div>
-	</div>
-	
-	<div class="section" id="section1">
-			<h1><center>Gradient Descent</center></h1>
-		<div class="content">
+<div id="header">
+	<ul>
+		<li> <a href=#section0> SVD </a></li>
+		<li><a href=#section1>Gradient Descent</a></li>
+		<li><a href=#section2>Lagrange Multiplier </a></li>
+
+	</ul>
 
 
-			<button class="button" style="vertical-align:middle"><span>Gradient Descent</span></button>
-		</div>
-	</div>
-
-	<div class="section" id="section2">
-			<h1><center>Lagranger Multiplier</center></h1>
-		<div class="content">
-
-
-			<button class="button" style="vertical-align:middle"><span>Lagrange Multiplier</span></button>
-		</div>
-	</div>
-
-	
 </div>
 
-<script type="text/javascript" src="javascript.fullPage.js"></script>
-<script type="text/javascript">
-	fullpage.initialize('#fullpage', {
-		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
-		menu: '#menu',
-		css3:true
-	});
+<div id="fullpage">
+	<div class="section " id="section0">
+		<div class="intro">
+			<h1><center>Singular Value Decomposition</center></h1>
+		<a href="svd.html"><button class="button" id="svdb" style="vertical-align:middle"><span>SVD</span></button></a>
 
-</script>
+		</div>
+	</div>
+	<div class="section " id="section1">
+		<div class="intro">
+			<h1><center>Gradient Descent</center></h1>
+			<button class="button" id="gradb" style="vertical-align:middle"><span>Gradient Descent</span></button>
+		</div>
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1><center>Lagranger Multiplier</center></h1>
+			<button class="button" id="lagb" style="vertical-align:middle"><span>Lagrange Multiplier</span></button>
+		</div>
+	</div>
+</div>
+
 
 </body>
 </html>
