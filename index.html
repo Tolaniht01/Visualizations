@@ -10,6 +10,11 @@
 	<meta name="Resource-type" content="Document" />
 	
 	<link rel="stylesheet" type="text/css" href="javascript.fullPage.css" />
+	
+	<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+	<script type="text/javascript">
+	LatexIT.add('p',true);
+	</script>
 
 	<style>
 		/* Reset CSS
@@ -121,7 +126,21 @@
 			
 			opacity: 0.4;
 		}
-	
+
+		/* section 3
+		/*------------------------------------*/
+
+		#section3{
+			background-color: #8FB98B;
+		}
+		#section3 h1{
+			color: #333;
+
+		}
+		#section3 p{
+			
+			opacity: 0.4;
+		}
 		
 	</style>
 
@@ -148,6 +167,12 @@
   display: inline-block;
   position: relative;
   transition: 0.5s;
+}
+
+#form
+{
+	color: #000000;
+	text-decoration  color: #000000;
 }
 
 .button span:after {
@@ -207,7 +232,13 @@ a:visited {
 
 	<div class="section" id="section3">
 			<h2>Eigen Values</h2>
-		<div class="content">
+
+			<p>
+
+					Dividing $x^2+1$ by $y^2$ gives \[\frac{x^2+1}{y^2}\]
+  					The british pound is worth 1.5 US\$ or $1.1 \euro$
+
+			</p>
 
 
 			<canvas id="myChart3" width="100%" height="40%"></canvas>
