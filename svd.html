@@ -1,165 +1,42 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>SVD</title>
+    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>SVD</title>
-	<meta name="author" content="Alvaro Trigo Lopez" />
-	<meta name="description" content="fullPage plugin by Alvaro Trigo. Pure javascript version of full screen slider." />
-	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple,pure,javascript,slider,hijacking" />
-	<meta name="Resource-type" content="Document" />
-	<script src="js/numeric-1.2.6.js"></script>
+
+    
+    <link rel="stylesheet" href="css/normalize.css">
+
+    
+        <link rel="stylesheet" href="css/style.css">
+    <script src="js/numeric-1.2.6.js"></script>
     <script src="js/numeric-1.2.6.min.js"></script>
     <script src="js/Chart.js"></script>
     <script src="js/svd.js"></script>
     <script src="js/eigen.js"></script>
-	<link rel="stylesheet" type="text/css" href="javascript.fullPage.css" />
-		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
-	<script type="text/javascript">
-	LatexIT.add('p',true);
-	</script>
-
-	<style>
-		/* Reset CSS
-		 * --------------------------------------- */
-		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
-		form,fieldset,input,textarea,p,blockquote,th,td {
-		    padding: 0;
-		    margin: 0;
-		}
-		a{
-			text-decoration:none;
-		}
-		table {
-		    border-spacing: 0;
-		}
-		fieldset,img {
-		    border: 0;
-		}
-		address,caption,cite,code,dfn,em,strong,th,var {
-		    font-weight: normal;
-		    font-style: normal;
-		}
-		strong{
-			font-weight: bold;
-		}
-		ol,ul {
-		    list-style: none;
-		    margin:0;
-		    padding:0;
-		}
-		caption,th {
-		    text-align: left;
-
-		}
-		h1,h2,h3,h4,h5,h6 {
-		    font-weight: normal;
-		    font-size: 100%;
-		    margin:0;
-		    padding:0;
-		    color:#444;
-		}
-		q:before,q:after {
-		    content:'';
-		}
-		abbr,acronym { border: 0;
-		}
+    
+    
+    
+  </head>
 
 
-		/* Custom CSS
-		 * --------------------------------------- */
-		body{
-			font-family: arial,helvetica;
-			color: #F2F2F2;
-		}
-		h1{
-			font-size: 6em;
-		}
-		h2{
-			font-size:4em;
-		}
-		p{
-			font-size: 2em;
-		}
-		.content{
-			position: relative;
-			top: 50%;
-			transform: translateY(-50%);
-			text-align: center;
-		}
-
-		/* Section 1
-		 * --------------------------------------- */
-		#section0{
-			background-color: #BFDA00;
-		}
-		#section0 h2{
-			color: #444;
-			
-		}
-		#section0 p{
-			color: #333;
-			opacity: 0.4;
-		}
-
-
-		/* Section 1
-		 * --------------------------------------- */
-		#section1{
-			background-color: #2EBE21;
-		}
-		#section1 h2{
-			color: #fff;
-		}
-		#section1 p{
-			opacity: 0.8;
-		}
-
-
-		/* Section 2
-		 * --------------------------------------- */
-		#section2{
-			background-color: #99ccff;
-		}
-		#section2 h2{
-			color: #fff;
-		}
-		#section2 p{
-			
-			opacity: 0.6;
-		}
-	/* Section 3
-		 * --------------------------------------- */
-		#section3{
-			background-color: #ff6666;
-		}
-		#section3 h2{
-			color: #fff;
-		}
-		#section3 p
-		{
-			font-size: medium;
-			justify-content:all;
-		}
-		#heading{
-			position: relative;
-			top: -2.5em;
-		}
-	</style>
-
-	<!-- --------------------------------Sript starts here ------------------------------------------- -->
-	<script type="text/javascript">
+  <body>
+    <!-- --------------------------------Sript starts here ------------------------------------------- -->
+  <script type="text/javascript">
     var lolz;
     function onload() { 
         a1 = document.getElementById('a1');
         a2 = document.getElementById('a2');
         b1 = document.getElementById('b1');
         b2 = document.getElementById('b2');
+        
     }
     function kk(){
       
 
-    	
+      
         //document.write(lolz.value)
         a11= parseInt(a1.value, 10);
         a12= parseInt(a2.value, 10);
@@ -170,13 +47,13 @@
 /* ----------------------- SVD Spherical--------------------------*/
 
         var arr = [];
-	for (var i=0, t=100; i<t; i++) {
+  for (var i=0, t=100; i<t; i++) {
     arr.push(Math.round(Math.random() * t)+100)
-	}
-	//document.write(arr);
+  }
+  //document.write(arr);
     
     x = numeric.sin(arr);       // sin values
-    y = numeric.cos(arr)    // corresponding cos values
+    y = numeric.cos(arr) ;   // corresponding cos values
     test("myChart1",x,y,a11,a12,b11,b12);
     
 
@@ -185,7 +62,7 @@
 
 
 /* ----------------------- SVD Normal Distribution--------------------------*/
-	x = [-0.46451278, -0.25046501, -0.51806833 , 0.99894498,  0.73771435 , 0.73099705,
+  x = [-0.46451278, -0.25046501, -0.51806833 , 0.99894498,  0.73771435 , 0.73099705,
   0.09312375,  0.0632059,  -1.70159466, -1.24575886,  0.01076841, -1.41489839,
  -1.06089061, -1.17768482 , 1.32294074,  0.48184197, -1.09207554,  1.28676039,
  -0.62833635,  1.15297009, -0.73849013,  0.14887586, -0.00502372,  0.92186764,
@@ -229,101 +106,59 @@
 
     
 </script>
-</head>
-<body>
+    <nav class="nav">
+  <div class="padded">
+    <ul>
+      <li class="active"><a id="link1" class="nav-section1" href="index.html">Home</a></li>
+      
+      
+      <li class="scrollTop"><a href="#"><span class="entypo-up-open"></span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<article>
+  <h1 id="section1">1. SVD</h1>
+ <input type="text" name="enter" class="enter" value="" id="a1"/>
+        <input type="text" name="enter" class="enter" value="" id="a2"/>
+        <br>
+        <input type="text" name="enter" class="enter" value="" id="b1"/>
+        <input type="text" name="enter" class="enter" value="" id="b2"/>
+        <input type="button" value="Submit" onclick="kk();"/>   
+        <br>
+        <br>
+        <br>
+        <h2>Ellipse</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
+        <canvas id="myChart1" width="100%" height="40%"></canvas>
+        <br>
+        <br>
+        <br>
+        <h2>Normal Distribution</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
+        <canvas id="myChart2" width="100%" height="40%"></canvas>
+        <br>
+        <br>
+        <br>
+        <h2>Eigen Vectors</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
+        <canvas id="myChart3" width="100%" height="40%"></canvas>
+      
 
 
-<div id="fullpage">
-	<div class="section " id="section0">
-		<div class="content">
-			<h1 id="heading"> SVD </h1>
+  
+</article>
 
-			<input type="text" name="enter" class="enter" value="" id="a1"/>
-    		<input type="text" name="enter" class="enter" value="" id="a2"/>
-    		<br>
-    		<input type="text" name="enter" class="enter" value="" id="b1"/>
-    		<input type="text" name="enter" class="enter" value="" id="b2"/>
-    		<input type="button" value="click" onclick="kk();"/>
-    		<br>
-    		
-			
+
+
+
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+        <script src="js/index.js"></script>
+
     
     
-		</div>
-	</div>
-	
-	<div class="section" id="section1">
-			<h2>Ellipse</h2>
-		<div class="content">
-
-
-			<canvas id="myChart1" width="100%" height="40%"></canvas>
-		</div>
-	</div>
-
-	<div class="section" id="section2">
-			<h2>Normal Distribution</h2>
-		<div class="content">
-
-
-			<canvas id="myChart2" width="100%" height="40%"></canvas>
-		</div>
-	</div>
-
-	<div class="section" id="section3">
-			<h2>Eigen Values</h2>
-
-			<p>
-				
-				{ Given a Matrice A with eigen vectors v1,v2 corresponding to eigen values $\lambda1$ and $\lambda 2$ repectively.Then we know that}
-\[Av = \lambda v \]    
-
-where $v$ $\epsilon$ $\{ v1, v2\}$ using the above result we can conclude that
-   \[A^2v \ = \lambda^2v \]
- \[AAv = A\lambda v\]
- \[AAv = \lambda A v\]
-
- \[A^2v = \lambda \lambda v\]
-
-\[A^2v \ = \lambda^2v \]
-From the above we get 
-
-\[A^nv \ = \lambda^nv \]
-where $n$ $\epsilon$  $\{ 1, 2 ,3 ,4, 5,.....\}$
-
-
-The graph plotted represents the various vectors obtained on multiplying the eigen vectors of matrice A with the powers of A. We observe the following cases :
-<br>
-1) if $|\lambda| <1 $ and $\lambda >0 $
-   The eigen vector of the matrice A keeps on shrinking as the value of n increases.
-<br>
-2) if $|\lambda| <1 $ and $\lambda <0 $
-   The eigen vector of the matrice A keeps on shrinking as the value of n increases and also for even value of n it keeps flipping its direction by $180^{\circ}$.
-<br>
-3) if $|\lambda| >1 $ and $\lambda <0 $
-   The eigen vector of the matrice A keeps on elongating as the value of n increases and also for even value of n it keeps flipping its direction by $180^{\circ}$.
- <br>  
-4) if $|\lambda| >1 $ and $\lambda >0 $
-   The eigen vector of the matrice A keeps on elongating as the value of n increases .
-	<br>
-			</p>
-		<div class="content">
-
-
-			<canvas id="myChart3" width="100%" height="40%"></canvas>
-		</div>
-	</div>
-</div>
-
-<script type="text/javascript" src="javascript.fullPage.js"></script>
-<script type="text/javascript">
-	fullpage.initialize('#fullpage', {
-		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
-		menu: '#menu',
-		css3:true
-	});
-
-</script>
-
-</body>
+    
+  </body>
 </html>
