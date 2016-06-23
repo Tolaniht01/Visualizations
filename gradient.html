@@ -12,7 +12,7 @@
       <script src="js/numeric-1.2.6.js"></script>
       <script src="js/numeric-1.2.6.min.js"></script>
       <script type="text/javascript" language="javascript" src="js/vis.js"></script>
-  
+  	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>		
 
     
   </head>
@@ -34,26 +34,33 @@
   <h1 id="section1"> Gradient Descent</h1>
         <h2>Surface Plot</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
-        <div id="visualization1"></div>
+        <center><div id="visualization1"></div></center>
     
         <br>
         
-        <h2>Iterations</h2>
+        <h2>Choosing alpha Iterations</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
         <div id="visualization"></div>
+        <br>
+        <h2>Optimized Iterations</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
+        <div id="myDiv"></div>
         
       
 
 
   
+
 </article>
+<br>
+ <div id ="myDiv"> </div>
 
 
     <!-- --------------------------------Sript starts here ------------------------------------------- -->
-  <script type="text/javascript">
-    A = [[3,2],[2,6]];  
-    b = [2,-8];
-    c = 0;
+ <script type="text/javascript">
+A = [[3,2],[2,6]];	
+b = [2,-8];
+c = 0;
 
 
 
@@ -74,7 +81,7 @@ var x = [x1[i],x2[j]];
 xTrans = [[x1[i]],[x2[j]]];
 
 
-//y = 1/2*(x'Ax) - bx + c/////////////////
+
 temp = numeric.dot(x,A);
 f1 = (numeric.dot(temp,xTrans));
 f1 = f1[0];
@@ -84,24 +91,29 @@ f2 = numeric.dot(b,xTrans);
 f2 = f2[0];
 
 y.push((f1 + f2 + c));
-///////////////////////////////////////////
+
 
 }
 yfinal.push(y); 
 }
 console.log(yfinal);
 
+
 z = []; 
     cb = function(i,x,f,g,H) { z.push({i:i, x:x, f:f, g:g, H:H }); }; 
-    sol = numeric.uncmin(function(x) { return ((1/2)*(((A[0][0])*x[0]*x[0]) + (A[0][1]*x[0]*x[1]) + (A[1][0]*x[0]*x[1]) + (A[1][1]*x[1]*x[1])) - b[0]*x[0] - b[1]*x[1] + c); },[1,1],1e-10,undefined,200,cb).solution;
+    sol = numeric.uncmin(function(x) { return ((1/2)*(((A[0][0])*x[0]*x[0]) + (A[0][1]*x[0]*x[1]) + (A[1][0]*x[0]*x[1]) + (A[1][1]*x[1]*x[1])) - b[0]*x[0] - b[1]*x[1] + c); },[40,50],1e-10,undefined,200,cb).solution;
 
 
 var data = new vis.DataSet();
 console.log("THe solution is");
 console.log(sol);
 
+xa1 = new Array(numeric.dim(z)[0]); ya1 = new Array(numeric.dim(z)[0]);
 for(var i = 0; i< numeric.dim(z)[0] ; i++){
 console.log(z[i].x);
+
+xa1[i]=z[i].x[0];
+ya1[i]=z[i].x[1];
 data.add([
   {id: i+1, text: 'point', x: z[i].x[0], y: z[i].x[1], z:0,style: x }
 ]);
@@ -121,27 +133,115 @@ var options = {
         backgrounColor:'gray',
     };
 
-    // Instantiate our graph object.
-    var container = document.getElementById('visualization');
-    var graph3d = new vis.Graph3d(container, data, options);
+
+       var trace1 = {
+  x: xa1,
+  y: ya1,
+  name: 'yaxis2 data', 
+  yaxis: 'y2', 
+  type: 'scatter',
+   mode: 'lines+markers',
+  color:"#000000"
+};
+
+
+    var size = 100, x21 = new Array(size), y21 = new Array(size), z21 = new Array(size), i, j;
+    var max=1000;
+
+for(var i = 0; i < size; i=i+1) {
+    x21[i]  = i-50; 
+    y21[i]=i-50;   
+    z21[i] = new Array(size);
+}
+
+for(var i = 0; i < size; i++) {
+    for( var j = 0; j < size; j++) {
+        
+        z21[i][j] = 1.5*y21[j]*y21[j]+3*x21[i]*x21[i]+2*y21[j]*x21[i]-2*y21[j]+8*x21[i];
+        console.log("x= "+x21[i]+" y= "+y21[j]+" z= "+z21[i][j]);
+
+        
+    }
+}
+
+
+var trace2 = {
+  x: x21, 
+  y: y21,
+  z: z21,
+  name: 'yaxis data', 
+  type: 'contour',
+  colorscale: 'Jet',
+        contours:{
+            coloring: 'lines'
+            }
+            };
+
+
+            var data1 = [trace1 , trace2];
+
+var layout = {
+  title: 'Double Y Axis Example', 
+  yaxis: {title: 'yaxis title',range:[-60,60]}, 
+  yaxis2: {
+    title: 'yaxis2 title', 
+    titlefont: {color: 'rgb(148, 103, 189)'}, 
+    tickfont: {color: 'rgb(148, 103, 189)'}, 
+    overlaying: 'y', 
+    side: 'right',range:[-60,60]
+  }
+
+
+};
+
+
+Plotly.newPlot('myDiv', data1, layout);
 
 
 
+</script>
+   <script>
+    <!-- JAVASCRIPT CODE GOES HERE -->
+
+    var size = 50, x = new Array(size), y = new Array(size), z = new Array(size), i, j;
+    var max=1000;
+
+for(var i = 0; i < size; i=i+1) {
+    x[i]  = i-25; 
+    y[i]=i-25;   
+    z[i] = new Array(size);
+}
+
+for(var i = 0; i < size; i++) {
+    for( var j = 0; j < size; j++) {
+        
+        z[i][j] = 1.5*y[j]*y[j]+3*x[i]*x[i]+2*y[j]*x[i]-2*y[j]+8*x[i];
+        console.log("x= "+x[i]+" y= "+y[j]+" z= "+z[i][j]);
+
+        if(z[i][j]<max)
+        {
+            max=z[i][j];
+        }
+    }
+}
 
 
+console.log("max value= "+max);
 
-    //------------------------------------------------------------
 
-    var data1 = new vis.DataSet();
+//-------------------------------------------------------------
+
+
+   var data1 = new vis.DataSet();
     // create some nice looking data with sin/cos
     var counter = 0;
     var steps = 40;  // number of datapoints will be steps*steps
     var axisMax = 150;
     var axisStep = axisMax / steps;
-    for (var x = -100; x < axisMax; x+=axisStep) {
-        for (var y = -100; y < axisMax; y+=axisStep) {
-            var value = 1.5*x^2 + 2*x*y + 3*y^2 - 2*x + 8*y
-            data1.add({id:counter++,x:x,y:y,z:value,style:value});
+    for (var x0 = -100; x0 < axisMax; x0+=axisStep) {
+        for (var y0 = -100; y0 < axisMax; y0+=axisStep) {
+            var value = 1.5*x0*x0 + 2*x0*y0 + 3*y0*y0 - 2*x0 + 8*y0;
+            data1.add({id:counter++,x:x0,y:y0,z:value,style:value});
         }
     }
     //1.5*x^2 + 2*x*y + 3*y^2 - 2*x + 8*y
@@ -161,9 +261,113 @@ var options = {
     // Instantiate our graph object.
     var container1 = document.getElementById('visualization1');
     var graph3d1 = new vis.Graph3d(container1, data1, options1);
-    
-</script>
-   
+
+
+  var trace2 = {
+  x: x, 
+  y: y,
+  z: z,
+  name: 'yaxis data', 
+  type: 'contour',
+  colorscale: 'Jet',
+        contours:{
+            coloring: 'lines'
+            }
+           
+};
+
+
+
+//-------------------------------------------------------------------
+
+
+
+A = [[3,2],[2,6]];  
+b = [2,-8];
+c = 0;
+
+init_x1 = 1;
+init_x2 = 1;
+x = [60,50];
+alpha = 0.1;
+maxIt = 400;
+tol = 1e-5;
+
+residual = 0;
+r = numeric.sub(numeric.dot(A,x), b);
+
+var data = new vis.DataSet();
+x11=new Array(1000);
+x21=new Array(1000);
+
+iter = 0;
+while ((Math.abs(r[0] - x[0]) > tol) && (Math.abs(r[1] - x[1]) > tol) && (iter <= maxIt)){
+
+
+
+data.add([
+  {id: iter+1, text: 'point', x: x[0], y: x[1], z:0,}
+]);
+x11[iter]=x[0];
+x21[iter]=x[1];
+iter++;
+
+
+
+
+grad1 = numeric.dot(x,A);
+grad1[0] = (1/2)*(grad1[0]);
+grad1[1] = (1/2)*(grad1[1]);
+
+grad2 = numeric.dot(x,numeric.transpose(A));
+grad2[0] = (1/2)*(grad2[0]);
+grad2[1] = (1/2)*(grad2[1]);
+
+grad1 = numeric.add(grad1,grad2);
+grad1 = numeric.sub(grad1,b);
+//console.log(grad1);
+ 
+x[0] = x[0] - alpha*grad1[0];
+x[1] = x[1] - alpha*grad1[1];
+r = numeric.sub(numeric.dot(A,x), b);
+console.log(x);
+
+}
+
+   var trace1 = {
+  x: x11,
+  y: x21,
+  name: 'yaxis2 data', 
+  yaxis: 'y2', 
+  type: 'scatter',
+   mode: 'lines+markers',
+  color:"#000000"
+};
+
+
+var data = [trace1, trace2];
+
+var layout = {
+  title: 'Double Y Axis Example', 
+  xaxis:{range:[-40,40]},
+  yaxis: {title: 'yaxis title',range:[-30,30]}, 
+  yaxis2: {
+    title: 'yaxis2 title', 
+    titlefont: {color: 'rgb(148, 103, 189)'}, 
+    tickfont: {color: 'rgb(148, 103, 189)'}, 
+    overlaying: 'y', 
+    side: 'right',range:[-30,30]
+  }
+
+
+};
+
+
+Plotly.newPlot('visualization', data, layout);
+
+
+
+  </script>
 
 
 
@@ -173,7 +377,7 @@ var options = {
         <script src="js/index.js"></script>
 
     
-    
+   
     
   </body>
 </html>
