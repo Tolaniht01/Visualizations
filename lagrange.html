@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Gradient Descent</title>
+    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+
+
+    
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/style.css">
+      <script src="js/numeric-1.2.6.js"></script>
+      <script src="js/numeric-1.2.6.min.js"></script>
+      <script type="text/javascript" language="javascript" src="js/vis.js"></script>
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+
+    
+  </head>
+
+
+  <body>
+     <nav class="nav">
+  <div class="padded">
+    <ul>
+      <li class="active"><a id="link1" class="nav-section1" href="index.html">Home</a></li>
+      
+      
+      <li class="scrollTop"><a href="#"><span class="entypo-up-open"></span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<article>
+  <h1 id="section1"> Lagrange Multipliers</h1>
+        <h2>Optimised Extremum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
+       
+    
+
+
+</article>
+
+
+
+    <!-- --------------------------------Sript starts here ------------------------------------------- -->
+ <script type="text/javascript">
+    var lolz;
+    function onload() { 
+        a1 = document.getElementById('a1');
+        a2 = document.getElementById('a2');
+        a3 = document.getElementById('a3');
+      
+        b1 = document.getElementById('b1');
+        b2 = document.getElementById('b2');
+        b3 = document.getElementById('b3');
+        b4 = document.getElementById('b4');
+        
+    }
+    function kk(){
+      
+
+
+        //document.write(lolz.value)
+        a11= parseInt(a1.value, 10);
+        a21= parseInt(a2.value, 10);
+        a31= parseInt(a3.value, 10);
+        
+        b12 = parseInt(b1.value, 10);
+        b22 = parseInt(b2.value, 10);
+        b32 = parseInt(b3.value, 10);
+        b42= parseInt(b4.value, 10);
+        
+        //Partial derivatives
+        f1 = a11;
+        f2 = a21;
+        f3 = a31;
+
+        g1 = 2*b12;
+        g2 = 2*b22;
+        g3 = 2*b32;
+
+        lambdaSq = ((Math.pow(f1/g1,2))*b12 + (Math.pow(f2/g2,2))*b22 + (Math.pow(f3/g3,2))*b32) /b42;
+        lambda = Math.sqrt(lambdaSq);
+        //alert(lambda); // lagrange multiplier value
+        xOptimised = f1/(g1*lambda);
+        yOptimised = f2/(g2*lambda);
+        zOptimised = f3/(g3*lambda);
+
+        // Plotting the gradient at (xOptimised, yOptimised, zOptimised).
+        grad = new Array(3);
+        grad[0] = g1*xOptimised;
+        grad[1] = g2*yOptimised;
+        grad[2] = g3*zOptimised;
+        //Tangent equation
+        constTerm = (grad[0]*xOptimised) +(grad[1]*yOptimised) +(grad[2]*zOptimised);
+      //  (grad[0])*xGrad + (grad[1]) *yGrad + (grad[2]) *zGrad = constTerm;
+
+        var size = 100000, xGrad = new Array(size), yGrad = new Array(size), zGrad = new Array(size), i, j;
+ 
+
+
+
+var i = 0;
+for(var t=0;t<10;t=t+0.5)
+{
+  xGrad[i] = xOptimised + grad[0]*t;
+  yGrad[i] = yOptimised + grad[1]*t;
+  zGrad[i] = zOptimised + grad[2]*t;
+  i++;
+
+}
+
+var size = 100000, xConst= new Array(size), yConst = new Array(size), zConst = new Array(size), i, j;
+var i = 0;
+for(var t=0;t<10;t=t+0.5)
+{
+  xConst[i] = xOptimised + f1*t;
+  yConst[i] = yOptimised + f2*t;
+  zConst[i] = zOptimised + f3*t;
+  i++;
+
+}
+
+//------------------------PLOT STARTS----------------------------------
+
+
+
+//---------------------------------------------------------------------
+var size = 10, x1 = new Array(size), y1 = new Array(size), z1 = new Array(size), z11 = new Array(size), i, j;
+ 
+
+for(var i = 0; i < size; i=i+1) {
+    x1[i]  = i-5; 
+    y1[i]=i-5;   
+    z1[i] = new Array(size);
+    z11[i] = new Array(size);
+}
+
+for(var i = 0; i < size; i++) {
+    for( var j = 0; j < size; j++) {
+        
+        z1[i][j] = Math.sqrt((b42-(b22*b22*y1[j]*y1[j])-(b12*b12*x1[i]*x1[i]))/b32);
+        z11[i][j] = -1 * z1[i][j];
+       
+       
+    }
+}
+
+ var trace1 = {
+  x: x1, 
+  y: y1,
+  z: z1,
+  name: 'yaxis data', 
+  type: 'contour',
+  colorscale: 'Jet',
+        contours:{
+            coloring: 'lines'
+            }
+           
+};
+
+  var trace2 = {
+  x: x1, 
+  y: y1,
+  z: z11,
+  name: 'yaxis data', 
+  type: 'contour',
+  colorscale: 'Jet',
+        contours:{
+            coloring: 'lines'
+            }
+};
+
+var trace3 = {
+  x: xGrad,
+  y: yGrad,
+  z: zGrad,
+  type: 'scatter'
+};
+var trace4 = {
+  x: xConst,
+  y: yConst,
+  z: zConst,
+  type: 'scatter'
+};
+var data = [trace1, trace2, trace3,trace4];
+
+var layout = {
+  title: 'Function g', 
+  yaxis: {title: 'yaxis title', range:[-5,5]}, 
+  yaxis2: {
+    title: 'yaxis2 title', 
+    titlefont: {color: 'rgb(148, 103, 189)'}, 
+    tickfont: {color: 'rgb(148, 103, 189)'}, 
+    overlaying: 'y', 
+    side: 'right',
+    range:[-5,5]
+  }
+
+
+};
+
+
+Plotly.newPlot('myDiv', data, layout);
+
+}
+
+
+</script>
+
+
+<h2> Constrain f </h2>
+ <input type="text" name="enter" class="enter" value="" id="a1"/> x +
+  <input type="text" name="enter" class="enter" value="" id="a2"/> y +
+   <input type="text" name="enter" class="enter" value="" id="a3"/> z
+   
+<h2> Function g </h2>
+<input type="text" name="enter" class="enter" value="" id="b1"/> x^2 +
+  <input type="text" name="enter" class="enter" value="" id="b2"/> y^2 +
+   <input type="text" name="enter" class="enter" value="" id="b3"/> z^2 =
+   <input type="text" name="enter" class="enter" value="" id="b4"/>
+<br>
+<br>
+<input type="button" value="Submit" onclick="kk();"/> 
+<br>
+<div id = "myDiv"></div>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+        <script src="js/index.js"></script>
+
+    
+   
+    
+  </body>
+</html>
