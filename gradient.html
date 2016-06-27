@@ -32,6 +32,21 @@
 
 <article>
   <h1 id="section1"> Gradient Descent</h1>
+  		<h3>Matrix A</h3>
+  		<input type="text" name="enter" class="enter" value="" id="a11"/>
+        <input type="text" name="enter" class="enter" value="" id="a12"/>
+        <br>
+        <input type="text" name="enter" class="enter" value="" id="a21"/>
+        <input type="text" name="enter" class="enter" value="" id="a22"/>
+        <p>       </p>
+        <h3>Matrix B</h3>
+        <input type="text" name="enter" class="enter" value="" id="b11"/>
+        <br>
+        <input type="text" name="enter" class="enter" value="" id="b21"/>
+        
+
+        <input type="button" value="Submit" onclick="kk();"/>   
+
         <h2>Surface Plot</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
         <center><div id="visualization1"></div></center>
@@ -54,12 +69,20 @@
 </article>
 <br>
  <div id ="myDiv"> </div>
-
-
-    <!-- --------------------------------Sript starts here ------------------------------------------- -->
- <script type="text/javascript">
-A = [[3,2],[2,6]];	
-b = [2,-8];
+<script type="text/javascript">
+	 function onload() { 
+        a11 = document.getElementById('a11');
+        a12 = document.getElementById('a12');
+        a21 = document.getElementById('a21');
+        a22 = document.getElementById('a22');
+     	b11 = document.getElementById('b11');
+        b21 = document.getElementById('b21');
+     		   
+    }
+function kk()
+{
+A = [[a11,a12],[a21,a22]];	
+b = [b11,b21];
 c = 0;
 
 
@@ -196,14 +219,8 @@ var layout = {
 
 
 Plotly.newPlot('myDiv', data1, layout);
-
-
-
-</script>
-   <script>
-    <!-- JAVASCRIPT CODE GOES HERE -->
-
-    var size = 50, x = new Array(size), y = new Array(size), z = new Array(size), i, j;
+//--------------------------------------------------------------------------------------------------------
+var size = 50, x = new Array(size), y = new Array(size), z = new Array(size), i, j;
     var max=1000;
 
 for(var i = 0; i < size; i=i+1) {
@@ -367,7 +384,12 @@ Plotly.newPlot('visualization', data, layout);
 
 
 
-  </script>
+}
+
+
+</script>
+
+    <!-- --------------------------------Sript starts here ------------------------------------------- -->
 
 
 
