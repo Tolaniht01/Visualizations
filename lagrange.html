@@ -2,7 +2,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Gradient Descent</title>
+    <title>Lagrange Multiplier</title>
     <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
 
 
@@ -48,90 +48,90 @@
     function onload() { 
         a1 = document.getElementById('a1');
         a2 = document.getElementById('a2');
-        a3 = document.getElementById('a3');
+        
       
         b1 = document.getElementById('b1');
         b2 = document.getElementById('b2');
         b3 = document.getElementById('b3');
         b4 = document.getElementById('b4');
+        b5 = document.getElementById('b5');
+        b6 = document.getElementById('b6');
         
     }
     function kk(){
       
 
 
-        //document.write(lolz.value)
-        a11= parseInt(a1.value, 10);
-        a21= parseInt(a2.value, 10);
-        a31= parseInt(a3.value, 10);
         
-        b12 = parseInt(b1.value, 10);
-        b22 = parseInt(b2.value, 10);
-        b32 = parseInt(b3.value, 10);
-        b42= parseInt(b4.value, 10);
+        a1= parseInt(a1.value, 10);
+        a2= parseInt(a2.value, 10);
+       	
         
-        //Partial derivatives
-        f1 = a11;
-        f2 = a21;
-        f3 = a31;
+        b1 = parseInt(b1.value, 10);
+        b2 = parseInt(b2.value, 10);
+        b3 = parseInt(b3.value, 10);
+        b4 = parseInt(b4.value, 10);
+        b5 = parseInt(b5.value, 10);
+        b6 = parseInt(b6.value, 10);
+        
+       // x = (x1/lambda +x2) , y = (y1/lambda +y2)
+       x1 = ((a2*b3-2*a1*b2)/(4*b1*b2 - b3*b3));
+       x2 = ((2*b4*b2 - b3*b5)/(4*b1*b2 - b3*b3));
+       y1 = ((a1*b3 - 2*a2*b1)/(4*b1*b2 - b3*b3));
+       y2 = ((2*b1*b5 - b3*b4)/(4*b1*b2 - b3*b3));
 
-        g1 = 2*b12;
-        g2 = 2*b22;
-        g3 = 2*b32;
+       //Quadratic form of lambda (lm) : (Coefficients)
+       c1 = b1*x2*x2 + b2*y2*y2 + b3*x2*y2 + b4*x2 + b5*y2 - b6;
+       c2 = 2*x1*x2*b1 + 2*y1*y2*b2 + (x1*y2 + x2*y1)*b3 + b4*x1 + b5*y1;
+       c3 = b1*x1*x1 + b2*y1*y1 + b3*x1*y1;
+     //  alert(c1 + " " + c2 +" " +c3)
+     // Lagrange values
+       lm1 = (-c2 + Math.sqrt(c2*c2 - 4*c1*c3))/(2*c1);
+       lm2 = (-c2 - Math.sqrt(c2*c2 - 4*c1*c3))/(2*c1);
 
-        lambdaSq = ((Math.pow(f1/g1,2))*b12 + (Math.pow(f2/g2,2))*b22 + (Math.pow(f3/g3,2))*b32) /b42;
-        lambda = Math.sqrt(lambdaSq);
-        //alert(lambda); // lagrange multiplier value
-        xOptimised = f1/(g1*lambda);
-        yOptimised = f2/(g2*lambda);
-        zOptimised = f3/(g3*lambda);
 
+
+
+       
+        xOptimised = (x1/lm1) + x2;
+        yOptimised = (y1/lm1) + y2;
+        // /alert(xOptimised + " " +yOptimised );
+
+
+        
         // Plotting the gradient at (xOptimised, yOptimised, zOptimised).
-        grad = new Array(3);
-        grad[0] = g1*xOptimised;
-        grad[1] = g2*yOptimised;
-        grad[2] = g3*zOptimised;
+  
+        //grad[2] = g3*zOptimised;
         //Tangent equation
-        constTerm = (grad[0]*xOptimised) +(grad[1]*yOptimised) +(grad[2]*zOptimised);
-      //  (grad[0])*xGrad + (grad[1]) *yGrad + (grad[2]) *zGrad = constTerm;
+        // Gradient:
 
-        var size = 100000, xGrad = new Array(size), yGrad = new Array(size), zGrad = new Array(size), i, j;
- 
+        gradFx = a1;
+        gradFy = a2;
+
+        gradGx = 2*b1*xOptimised + b3*yOptimised + b4;
+        gradGy = b3*xOptimised + 2*b2*yOptimised + b5;
+
+        var xF = [xOptimised, gradFx];
+        var yF = [yOptimised, gradFy];
+
+        var xG = [xOptimised, gradGx];
+        var yG = [yOptimised, gradGy];
+        
+  
 
 
-
-var i = 0;
-for(var t=0;t<10;t=t+0.5)
-{
-  xGrad[i] = xOptimised + grad[0]*t;
-  yGrad[i] = yOptimised + grad[1]*t;
-  zGrad[i] = zOptimised + grad[2]*t;
-  i++;
-
-}
-
-var size = 100000, xConst= new Array(size), yConst = new Array(size), zConst = new Array(size), i, j;
-var i = 0;
-for(var t=0;t<10;t=t+0.5)
-{
-  xConst[i] = xOptimised + f1*t;
-  yConst[i] = yOptimised + f2*t;
-  zConst[i] = zOptimised + f3*t;
-  i++;
-
-}
 
 //------------------------PLOT STARTS----------------------------------
 
 
 
 //---------------------------------------------------------------------
-var size = 10, x1 = new Array(size), y1 = new Array(size), z1 = new Array(size), z11 = new Array(size), i, j;
+var size = 50, x1 = new Array(size), y1 = new Array(size), z1 = new Array(size), z11 = new Array(size), i, j;
  
 
 for(var i = 0; i < size; i=i+1) {
-    x1[i]  = i-5; 
-    y1[i]=i-5;   
+    x1[i]  = i-25; 
+    y1[i]=i-25;   
     z1[i] = new Array(size);
     z11[i] = new Array(size);
 }
@@ -139,7 +139,8 @@ for(var i = 0; i < size; i=i+1) {
 for(var i = 0; i < size; i++) {
     for( var j = 0; j < size; j++) {
         
-        z1[i][j] = Math.sqrt((b42-(b22*b22*y1[j]*y1[j])-(b12*b12*x1[i]*x1[i]))/b32);
+        z1[i][j] = b1*x1[i]*x1[i] + b2*y1[j]*y1[j] + b3*x1[i]*y1[j] + b4*x1[i] + b5*y1[j] -b6;
+
         z11[i][j] = -1 * z1[i][j];
        
        
@@ -172,30 +173,30 @@ for(var i = 0; i < size; i++) {
 };
 
 var trace3 = {
-  x: xGrad,
-  y: yGrad,
-  z: zGrad,
+  x: xF,
+  y: yF,
   type: 'scatter'
 };
 var trace4 = {
-  x: xConst,
-  y: yConst,
-  z: zConst,
+  x: xG,
+  y: yG,
   type: 'scatter'
 };
 var data = [trace1, trace2, trace3,trace4];
 
 var layout = {
   title: 'Function g', 
-  yaxis: {title: 'yaxis title', range:[-5,5]}, 
+  yaxis: {title: 'yaxis title', range:[-20,20]}, 
   yaxis2: {
     title: 'yaxis2 title', 
     titlefont: {color: 'rgb(148, 103, 189)'}, 
     tickfont: {color: 'rgb(148, 103, 189)'}, 
     overlaying: 'y', 
     side: 'right',
-    range:[-5,5]
-  }
+    range:[-20,20]
+  },
+  xaxis:{range:[-20,20]}  
+
 
 
 };
@@ -209,19 +210,20 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 
 
-<h2> Constrain f </h2>
+<h2> F </h2>
  <input type="text" name="enter" class="enter" value="" id="a1"/> x +
-  <input type="text" name="enter" class="enter" value="" id="a2"/> y +
-   <input type="text" name="enter" class="enter" value="" id="a3"/> z
+  <input type="text" name="enter" class="enter" value="" id="a2"/> y 
    
-<h2> Function g </h2>
+<h2> Constraint g </h2>
 <input type="text" name="enter" class="enter" value="" id="b1"/> x^2 +
   <input type="text" name="enter" class="enter" value="" id="b2"/> y^2 +
-   <input type="text" name="enter" class="enter" value="" id="b3"/> z^2 =
-   <input type="text" name="enter" class="enter" value="" id="b4"/>
+   <input type="text" name="enter" class="enter" value="" id="b3"/> xy +
+   <input type="text" name="enter" class="enter" value="" id="b4"/> x +
+   <input type="text" name="enter" class="enter" value="" id="b5"/> y =
+   <input type="text" name="enter" class="enter" value="" id="b6"/>
 <br>
 <br>
-<input type="button" value="Submit" onclick="kk();"/> 
+<input type="button" value="Submit" onclick="kk()"/> 
 <br>
 <div id = "myDiv"></div>
 
