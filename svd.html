@@ -32,7 +32,7 @@
         b1 = document.getElementById('b1');
         b2 = document.getElementById('b2');
         
-    } 
+    }
     function kk(){
       
 
@@ -141,7 +141,28 @@
         <br>
         <br>
         <h2>Eigen Vectors</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
+        <p> Given a Matrice A with eigen vectors v1,v2 corresponding to eigen values &lambda;1 and &lambda;2 repectively.Then we know that</p>
+        <center><p> Av=&lambda;v</p></center>
+        <p>where v &epsilon; { v1, v2} using the above result we can conclude that</p>
+        <center>
+          <p>&rArr; A<sup>2</sup>v=&lambda;<sup>2</sup>v</p>
+          <p>&rArr; AAv=A&lambda;v</p>
+          <p>&rArr; AAv=&lambda;Av</p>
+          <p>&rArr; A<sup>2</sup>v=&lambda;&lambda;v</p>
+          <p>&rArr; A<sup>2</sup>v=&lambda;<sup>2</sup>v</p>
+
+        </center>
+        <p>From the above we get</p>
+        <center><p><p>A<sup>n</sup>v=&lambda;<sup>n</sup>v</p></p></center>
+        <p>where n &epsilon;{1,2,3,4,5,.............}</p>
+        <p>The graph plotted represents the various vectors obtained on multiplying the eigen vectors of matrice A with the powers of A. We observe the following cases :</p>
+        <br>
+        <p>1) if |&lambda;| < 1 and &lambda; > 0 The eigen vector of the matrice A keeps on shrinking as the value of n increases.</p>
+        <p>2) if |&lambda;| <1  and &lambda; >0 The eigen vector of the matrice A keeps on shrinking as the value of n increases and also for even value of n it keeps flipping its direction by 180&deg;.</p>
+        <p>3) if |&lambda;| >1 and &lambda;<0 The eigen vector of the matrice A keeps on elongating as the value of n increases and also for even value of n it keeps flipping its direction by 180&deg;.</p>
+        <p> 4) if |&lambda;| >1  and &lambda; >0 The eigen vector of the matrice A keeps on elongating as the value of n increases .</p>
+
+
         <canvas id="myChart3" width="100%" height="40%"></canvas>
       
 
