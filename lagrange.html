@@ -12,7 +12,10 @@
       <script src="js/numeric-1.2.6.js"></script>
       <script src="js/numeric-1.2.6.min.js"></script>
       <script type="text/javascript" language="javascript" src="js/vis.js"></script>
-      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>  
+      <script src="js/algebra-0.2.5.min.js"></script>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script> 
 
     
   </head>
@@ -33,13 +36,33 @@
 <article>
   <h1 id="section1"> Lagrange Multipliers</h1>
         <h2>Optimised Extremum</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
-       
-    
-
-
+        <div id="main">
+The method of Lagrange multipliers allows us to maximize or minimize functions with the constraint
+that we only consider points on a certain surface.  
+<h2>Key Point:</h2> The gradient of a function is in the direction of <strong>steepest</strong> increase of the function <span id="fun"></span> and is orthogonal to the contour lines.
+<br>
+Using the above key point, we can conclude that the gradient of <span id="fun1"></span> and <span id="gun"></span> should be parallel at the point of extremum. Since if they are not parallel then there will be a component of <span id="fun2"></span> on <span id="gun1"></span> and the gradient will increase in that direction in order to maximise <span id="fun3"></span>.
 </article>
+<script >
+var Fraction = algebra.Fraction;
+var Expression = algebra.Expression;
+var Equation = algebra.Equation;
 
+var expr = new Expression("x").multiply(new Fraction(-9,10));
+
+
+
+
+var lambda = new Expression("lambda").add(3).divide(4);
+var Phi = new Expression("Phi").subtract(new Fraction(1, 5)).add(lambda);
+katex.render("f(x)",fun);
+katex.render("f(x)",fun1);
+katex.render("f(x)",fun2);
+katex.render("f(x)",fun3);
+katex.render("g(x)",gun);
+katex.render("g(x)",gun1);
+
+</script>
 
 
     <!-- --------------------------------Sript starts here ------------------------------------------- -->
@@ -95,7 +118,7 @@
        
         xOptimised = (x1/lm1) + x2;
         yOptimised = (y1/lm1) + y2;
-        // /alert(xOptimised + " " +yOptimised );
+        // alert(xOptimised + " " +yOptimised );
 
 
         
@@ -208,7 +231,16 @@ Plotly.newPlot('myDiv', data, layout);
 
 
 </script>
+<style type="text/css">
+	
+	#b1,#b2,#b3,#b4,#b5,#b6{
 
+
+	}
+
+
+
+</style>
 
 <h2> F </h2>
  <input type="text" name="enter" class="enter" value="" id="a1"/> x +
