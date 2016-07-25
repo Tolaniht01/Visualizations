@@ -50,11 +50,6 @@ var Equation = algebra.Equation;
 
 var expr = new Expression("x").multiply(new Fraction(-9,10));
 
-
-
-
-var lambda = new Expression("lambda").add(3).divide(4);
-var Phi = new Expression("Phi").subtract(new Fraction(1, 5)).add(lambda);
 katex.render("f(x)",fun);
 katex.render("f(x)",fun1);
 katex.render("f(x)",fun2);
@@ -231,31 +226,24 @@ Plotly.newPlot('myDiv', data, layout);
 
 
 </script>
-<style type="text/css">
-	
-	#b1,#b2,#b3,#b4,#b5,#b6{
 
-
-	}
-
-
-
-</style>
 
 <h2> F </h2>
- <input type="text" name="enter" class="enter" value="" id="a1"/> x +
-  <input type="text" name="enter" class="enter" value="" id="a2"/> y 
+ <input type="text" name="enter" class="enter" value="" id="a1" size="10"/> x +
+  <input type="text" name="enter" class="enter" value="" id="a2" size="10" /> y 
    
 <h2> Constraint g </h2>
-<input type="text" name="enter" class="enter" value="" id="b1"/> x^2 +
-  <input type="text" name="enter" class="enter" value="" id="b2"/> y^2 +
-   <input type="text" name="enter" class="enter" value="" id="b3"/> xy +
-   <input type="text" name="enter" class="enter" value="" id="b4"/> x +
-   <input type="text" name="enter" class="enter" value="" id="b5"/> y =
-   <input type="text" name="enter" class="enter" value="" id="b6"/>
-<br>
+<input type="text" name="enter" class="enter" value="" id="b1" size="10"/> x^2 +
+  <input type="text" name="enter" class="enter" value="" id="b2" size="10"/> y^2 +
+   <input type="text" name="enter" class="enter" value="" id="b3" size="10"/> xy +
+   <input type="text" name="enter" class="enter" value="" id="b4" size="10"/> x +
+   <input type="text" name="enter" class="enter" value="" id="b5" size="10"/> y =
+   <input type="text" name="enter" class="enter" value="" id="b6" size="10"/>
+
+
 <br>
 <input type="button" value="Submit" onclick="kk()"/> 
+
 <br>
 <div id = "myDiv"></div>
 

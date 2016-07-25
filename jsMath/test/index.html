@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<TITLE>jsMath (Test):  jsMath Test Page</TITLE>
+
+</HEAD>
+<BODY>
+
+<!-- *Begin-Document-Body -->
+
+<SCRIPT>
+  jsMath = {
+    Controls: {
+      cookie: {scale: 133},
+      CheckVersion: function () {
+        jsMath.Script.delayedLoad('http://www.math.union.edu/locate/jsMath/jsMath/jsMath-version-check.js');
+      }
+    },
+    Parser: {prototype: {
+      macros: {warning: ["Macro","\\color{##00CC00}{\\rm jsMath\\ appears\\ to\\ be\\  working!}",1]}
+    }}
+  }
+</SCRIPT>
+<SCRIPT SRC="/jsMath/plugins/noImageFonts.js"></SCRIPT>
+<SCRIPT SRC="/jsMath/jsMath.js"></SCRIPT>
+
+
+ <STYLE> #jsMath_Warning {display: none} </STYLE>
+<DIV CLASS="math">
+\pmatrix{1& 0\\ 0& 1}
+\left[\matrix{a^2-b^2& -1\\ 1& 2ab}\right]
+</DIV>
+<p>
+
+
+<SCRIPT>
+jsMath.Process(document);
+</SCRIPT>
+
+<!-- *End-Document-Body -->
+
+
+
+
+</BODY>
+</HTML>
