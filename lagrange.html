@@ -228,21 +228,41 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 
 
-<h2> F </h2>
- <input type="text" name="enter" class="enter" value="" id="a1" size="10"/> x +
-  <input type="text" name="enter" class="enter" value="" id="a2" size="10" /> y 
+<h2>Enter the function f </h2>
+ <input type="text" name="enter" class="enter" value="" id="a1" size="10"/> <span id="x"></span> +
+  <input type="text" name="enter" class="enter" value="" id="a2" size="10" /> <span id="y"></span>
    
-<h2> Constraint g </h2>
-<input type="text" name="enter" class="enter" value="" id="b1" size="10"/> x^2 +
-  <input type="text" name="enter" class="enter" value="" id="b2" size="10"/> y^2 +
-   <input type="text" name="enter" class="enter" value="" id="b3" size="10"/> xy +
-   <input type="text" name="enter" class="enter" value="" id="b4" size="10"/> x +
-   <input type="text" name="enter" class="enter" value="" id="b5" size="10"/> y =
+<h2> Enter the constraint g </h2>
+<input type="text" name="enter" class="enter" value="" id="b1" size="10"/> <span id="x2"></span> +
+  <input type="text" name="enter" class="enter" value="" id="b2" size="10"/> <span id="y2"></span> +
+   <input type="text" name="enter" class="enter" value="" id="b3" size="10"/> <span id="xy"></span> +
+   <input type="text" name="enter" class="enter" value="" id="b4" size="10"/> <span id="x1"></span> +
+   <input type="text" name="enter" class="enter" value="" id="b5" size="10"/> <span id="y1"></span> =
    <input type="text" name="enter" class="enter" value="" id="b6" size="10"/>
 
 
 <br>
+<br>
 <input type="button" value="Submit" onclick="kk()"/> 
+<script >
+var Fraction = algebra.Fraction;
+var Expression = algebra.Expression;
+var Equation = algebra.Equation;
+
+
+var a = new Expression("x").pow(2);
+var b = new Expression("y").pow(2);
+
+katex.render("x",x);
+katex.render("y",y);
+katex.render(algebra.toTex(a),x2);
+katex.render(algebra.toTex(b),y2);
+katex.render("xy",xy);
+katex.render("x",x1);
+katex.render("y",y1);
+
+
+</script>
 
 <br>
 <div id = "myDiv"></div>

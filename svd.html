@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>SVD</title>
     <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-
-
+    <script src="js/algebra-0.2.5.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script> 
     
     <link rel="stylesheet" href="css/normalize.css">
 
@@ -23,6 +24,7 @@
 
 
   <body>
+  
     <!-- --------------------------------Sript starts here ------------------------------------------- -->
   <script type="text/javascript">
     var lolz;
@@ -106,6 +108,7 @@
 
     
 </script>
+
     <nav class="nav">
   <div class="padded">
     <ul>
@@ -118,7 +121,8 @@
 </nav>
 
 <article>
-  <h1 id="section1">1. SVD</h1>
+Enter the matrix whose SVD Visualization you want to see.
+  <h1 id="section1">SVD</h1>
  <input type="text" name="enter" class="enter" value="" id="a1"/>
         <input type="text" name="enter" class="enter" value="" id="a2"/>
         <br>
@@ -128,20 +132,70 @@
         <br>
         <br>
         <br>
-        <h2>Ellipse</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
+        <h2>Visualization</h2>
+        <p>To understand what is happening when we do SVD, let us take 100 random points that lie on a circle and see what happens when we apply each decomposition to these set of points.For the given matrix <span id="a"></span> on applying SVD we get <span id="svd"></span> where <span id="U"></span> is mXm matrix , <span id="S"></span> is mXn diagonal matrix and <span id="VT"></span> is nxn matrix.</p>
+        <p>On taking the 100 generated points as a matrix of x and y coordinates (say matrix M), and then multiplying with U we find that the dataset gets rotated (the shape of the circle remains same) which can be seen in brown, then multiplying with S scales the circle (seen in green) and then finally multiplying with <span id="VT1"></span> rotates the figure again (seen in red). So SVD rotates, scales and then rotates the figure hence changing the circle to look like ellipse. </p>
         <canvas id="myChart1" width="100%" height="40%"></canvas>
         <br>
         <br>
         <br>
+
+<script >
+var Fraction = algebra.Fraction;
+var Expression = algebra.Expression;
+var Equation = algebra.Equation;
+  
+katex.render("A",a);
+katex.render("USV^T",svd);
+katex.render("U",U);
+katex.render("S",S);
+katex.render("V^T",VT);
+katex.render("V^T",VT1);
+//katex.render(algebra.toTex(b),y2);
+</script>
+
         <h2>Normal Distribution</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae orci nunc. Morbi elit erat, bibendum non feugiat a, aliquam et eros. Nulla enim ipsum, pulvinar vitae augue in, porta eleifend enim. Pellentesque nulla dui, euismod nec porttitor non, lobortis at enim. In urna mauris, sollicitudin id eleifend et, egestas sed erat. Nam egestas, augue quis luctus faucibus, elit erat sodales ante, sollicitudin viverra orci risus et augue. Curabitur sapien lacus, posuere vel justo vitae, scelerisque pharetra ex. In ultricies tortor at tellus dapibus eleifend. Nullam eget orci finibus, consectetur ligula eu, viverra erat. Curabitur sodales egestas elementum. Morbi tempor lectus in metus volutpat, non cursus mauris ullamcorper. Proin aliquam feugiat elit et lacinia. Vivamus volutpat lacus sit amet tristique condimentum.</p>
+        <p>For the set of data points, we have taken a standard normal distribution with mean as 0 and covariance matrix represented by [1 0 ; 0 1] which gives us points spread out from the origin upto a radius of one.
+A standard normal distribution is a normal distribution with zero mean and unit variance , given by the probability density function and distribution function
+<img src = "images/Normaldist.jpg"/><br>
+
+When the first matrix in the SVD (V') is applied to the data, this serves to rotate the data in three-space so that the data is represented relative to the V-basis.<br><br>
+
+The second step in the SVD is to multiply our rotated data by the 'singular matrix' S, which is mxn.Generally, multiplying a vector <span id="v"></span> by a diagonal matrix with r nonzero elements on the diagonal <span id="s"></span> simply yields <span id="fo"></span>. That is, it stretches or contracts the components of v by the magnitude of the the singular values and zeroes out those elements of x that correspond to the zeros on the diagonal. <br><br>
+
+The third step,matrix <span id="u"></span> to the transformed data represented in the <span id="u1"></span>-basis. Just like <span id="vt"></span>, <span id="u2"></span> is a rotation matrix: it transforms the data back to the standard basis.<br><br>
+
+Finally finding the covariance matrix, for this new distribution, we obtain the same input matrix used above because matrix multiplication is happening with Identity matrix.<br><br>
+
+
+		</p>
         <canvas id="myChart2" width="100%" height="40%"></canvas>
         <br>
         <br>
         <br>
+<script >
+var Fraction = algebra.Fraction;
+var Expression = algebra.Expression;
+var Equation = algebra.Equation;
+
+
+katex.render("v=(v_1,v_2...v_n)^T",v);
+katex.render("(s_1,....s_r)",s);
+katex.render("b=(s_1v_1, s_2v_2, .... s_rv_r, 0 .. 0)",fo);
+katex.render("U",u);
+katex.render("U",u1);
+katex.render("U",u2);
+katex.render("V^T",vt);
+
+
+
+
+
+</script>
+
+
         <h2>Eigen Vectors</h2>
-        <p> Given a Matrice A with eigen vectors v1,v2 corresponding to eigen values &lambda;1 and &lambda;2 repectively.Then we know that</p>
+         <p> Given a Matrice A with eigen vectors v1,v2 corresponding to eigen values &lambda;1 and &lambda;2 repectively.Then we know that</p>
         <center><p> Av=&lambda;v</p></center>
         <p>where v &epsilon; { v1, v2} using the above result we can conclude that</p>
         <center>
@@ -152,17 +206,15 @@
           <p>&rArr; A<sup>2</sup>v=&lambda;<sup>2</sup>v</p>
 
         </center>
-        <p>From the above we get</p>
-        <center><p><p>A<sup>n</sup>v=&lambda;<sup>n</sup>v</p></p></center>
-        <p>where n &epsilon;{1,2,3,4,5,.............}</p>
+        From the above we get
+        <center><p>A<sup>n</sup>v=&lambda;<sup>n</sup>v</p></center>
+        where n &epsilon;{1,2,3,4,5,.............}
         <p>The graph plotted represents the various vectors obtained on multiplying the eigen vectors of matrice A with the powers of A. We observe the following cases :</p>
         <br>
         <p>1) if |&lambda;| < 1 and &lambda; > 0 The eigen vector of the matrice A keeps on shrinking as the value of n increases.</p>
         <p>2) if |&lambda;| <1  and &lambda; >0 The eigen vector of the matrice A keeps on shrinking as the value of n increases and also for even value of n it keeps flipping its direction by 180&deg;.</p>
         <p>3) if |&lambda;| >1 and &lambda;<0 The eigen vector of the matrice A keeps on elongating as the value of n increases and also for even value of n it keeps flipping its direction by 180&deg;.</p>
         <p> 4) if |&lambda;| >1  and &lambda; >0 The eigen vector of the matrice A keeps on elongating as the value of n increases .</p>
-
-
         <canvas id="myChart3" width="100%" height="40%"></canvas>
       
 
