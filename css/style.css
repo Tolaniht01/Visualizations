@@ -1,5 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Exo:200,500);
-@import "http://weloveiconfonts.com/api/?family=entypo";
+
 [class*="entypo-"]:before {
   font-family: "entypo", sans-serif;
 }
@@ -52,7 +51,7 @@ a:hover {
   transition: all .1s ease-in-out;
 }
 
-nav {
+ #navi1{
   float: left;
   width: 100%;
   top: 0;
@@ -62,7 +61,27 @@ nav {
   z-index: 100;
 
 }
+#footer_div{
+  float: left;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 55px;
+  color: #FFFFFF;
+  background: #455a6e;
+  position: fixed;
+  z-index: 100;
 
+}
+#guide{
+  float: right;
+  
+}
+#ref{
+  padding-left:160px;
+
+
+}
 nav .padded {
   padding: 10px;
 }
@@ -110,4 +129,36 @@ ul li.active a {
 
 ul li.scrollTop {
   float: right;
+}
+
+
+#MainContainer {
+    width: 1200px;
+    background-color: #0066CC;
+}
+#MenuContainer {
+    height: 70px;
+    bottom:0px;
+}
+ul#navigation {
+    height: 70px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-width: 1px 0;    
+    text-align: center;
+    font-size: 22px;
+    font-family: 'Cham-WebFont', Arial, sans-serif;
+    background-color: #FFF;
+}
+ul#navigation li {
+    display: inline;
+    margin-right: .75em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ul#navigation li.last {
+    margin-right: 0;
 }
